@@ -14,18 +14,18 @@ def request_submissions(cik):
     except:
         return float('nan') 
 
-def get_ciks():
+def get_ciks(n=10):
     client = RequestsClient()
-    idx_url = EDGAR_IX_URL.format(year=2022, quarter='QTR2')
+    idx_url = EDGAR_IX_URL.format(year=2023, quarter='QTR2')
     client.request(idx_url)
     lines = client.content.split('\n')
     lines = [i for i in lines if '8-K' in i]
     ciks = [i.split('|')[0] for i in lines]
-    ciks = list(set(ciks))
+    ciks = list(set(ciks))[:n]
     return ciks
 
 if __name__ == "__main__":
-    df = pd.DataFrame(get_ciks(), columns=['cik'])
+    df = pd.DataFrame(get_ciks(10), columns=['cik'])
     print(f'Companies found: {df.shape[0]}')
     df['r'] = df.cik.apply(lambda cik: request_submissions(cik))
     df['sic'] = df.r.apply(lambda r: r.get('sic'))
@@ -37,4 +37,3 @@ if __name__ == "__main__":
     df['entityType'] = df.r.apply(lambda r: r.get('entityType', float('nan')))
     df.drop('r', axis=1, inplace=True)
     df.to_csv('./data/companies.csv', index=False)
-

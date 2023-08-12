@@ -1,18 +1,18 @@
 from . import core_bp
 from gpt import gpt
 from flask import jsonify, request
-from .helpers import get_current_weather
+from .helpers import get_securities_data
 from extra.logger_config import setup_logger
 from extra.utils import load_prompt 
 
 logger = setup_logger(__name__)
 
 def handle_securities(q, metadata=None):
-    prompt = load_prompt('extract_params')['weather']['prompt'].format(q=q)
-    pred_location = gpt(prompt=prompt)["choices"][0]["message"]["content"]
-    if pred_location == 'locale': pred_location = 'SF' #TODO: get locale from request
-    cur_weather_data = get_current_weather(pred_location) 
-    return jsonify({'object': 'WeatherWidget', 'data': cur_weather_data}), 200
+    prompt = load_prompt('extract_params')['securities']['prompt'].format(q=q)
+    sd = gpt(prompt=prompt)["choices"][0]["message"]["content"]
+    sd = get_securities_data(sd) 
+    print('out', sd)
+    return jsonify({'object': 'SecuritiesWidget', 'data': sd}), 200
 
 def handle_no_match(_):
     return jsonify({'object': 'UnknownWidget', 'data': {}}), 200

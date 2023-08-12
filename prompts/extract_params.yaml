@@ -5,14 +5,17 @@ securities:
 
     Before answering, make sure to follow these instructions:
 
-    1. Company names should be extracted as a single entity.
-    2. If the company name is not found, return -1
+    1. If an entity is not present, use "None" as the value
+    2. Current date: 2023-08-12
 
-    [s]: How's Tesla doing in Q2? 
-    [entities]: {"company": "Tesla", "quarter": "Q2"} 
+    [s]: How's Tesla (TSLA) doing in Q2? 
+    [entities]: {{\"symbol\": \"TSLA\", \"period\": \"Q2\", \"name\": \"Tesla\"}}
 
     [s]: What are top risks for Apple in Q3? 
-    [entities]: {"company": "Apple", "quarter": "Q3"} 
+    [entities]: {{\"symbol\": \"AAPL\", \"period\": \"Q3\", \"name\": \"Apple\"}}
+
+    [s]: What are top risks for Lockheed Martin this year? 
+    [entities]: {{\"symbol\": \"LMT\", \"period\": \"2023\", \"name\": \"Lockheed Martin\"}}
 
     [s]: {q}
     [entities]: 
