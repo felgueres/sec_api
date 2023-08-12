@@ -1,0 +1,18 @@
+securities:
+  prompt: |-
+    You are an expert at entity extraction. 
+    Given a sentence, your task is to extract entities.
+
+    Before answering, make sure to follow these instructions:
+
+    1. Company names should be extracted as a single entity.
+    2. If the company name is not found, return -1
+
+    [s]: How's Tesla doing in Q2? 
+    [entities]: {"company": "Tesla", "quarter": "Q2"} 
+
+    [s]: What are top risks for Apple in Q3? 
+    [entities]: {"company": "Apple", "quarter": "Q3"} 
+
+    [s]: {q}
+    [entities]: 

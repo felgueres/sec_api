@@ -1,0 +1,12 @@
+prompt: |-
+  You are a sentence classifier trained to determine the intent of a sentence.
+  Given a sentence, you must classify it into one of the following categories: {categories}
+
+  Instructions: 
+  1. Read the sentence.
+  2. Select the category that best describes the sentence.
+  3. Select one category per sentence.
+
+  [Sentence to classify]: {q}
+
+  [Category]: 
