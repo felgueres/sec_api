@@ -1,6 +1,5 @@
 import logging as pylogging
 import json
-import os
 import pandas as pd
 from utils.requests_client import RequestsClient
 from utils.form_client import FormClient
@@ -32,7 +31,6 @@ def parse_10K_submissions(CIK):
 
 def get_latest_10K_url(cik):
     subs=parse_10K_submissions(cik)
-    print(subs)
     accession=subs['filings']['recent']['accessionNumber'][0] #Ordered list, first item is latest.
     accession=accession.replace('-','')
     primaryDoc=subs['filings']['recent']['primaryDocument'][0]

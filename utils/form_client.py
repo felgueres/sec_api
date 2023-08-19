@@ -1,5 +1,5 @@
-from requests_client import RequestsClient
-from utils import is_html_tag_visible
+from utils.utils import is_html_tag_visible
+from utils.requests_client import RequestsClient
 import bs4 as bs
 
 class FormClient(object):

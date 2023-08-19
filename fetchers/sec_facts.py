@@ -27,7 +27,7 @@ def get_facts_data(f,concept,cik,frames):
             continue 
     
     for frame in frames:
-        if frame in _data:
+        if frame in _data and _data[frame].get('fp', '').startswith('Q'):
             out.append(_data[frame]) 
         else:
             empty_frame = {'cik': cik, 'concept': concept, 'form': '', 'val': 0, 'fp': '', 'fy': '', 'frame': frame, 'filed': ''}
@@ -78,4 +78,3 @@ def get_company_facts(cik, start_date=2021, end_date=2022):
 
 if __name__ == '__main__':
     data = get_company_facts('40533')
-
